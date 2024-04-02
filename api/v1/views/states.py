@@ -60,9 +60,9 @@ def put_state(state_id):
     if not req:
         abort(400, "Not a JSON")
 
-    for e, v in req.items():
-        if e not in ['id', 'created_at', 'updated_at']:
-            setattr(obj, e, v)
+    for k, v in req.items():
+        if k not in ['id', 'created_at', 'updated_at']:
+            setattr(obj, k, v)
 
     storage.save()
     return make_response(jsonify(obj.to_dict()), 200)
